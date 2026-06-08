@@ -258,49 +258,19 @@ function Projects() {
   );
 }
 
-/* ----------------------------- tweaks ----------------------------- */
+/* ----------------------------- theme ----------------------------- */
 
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "direction": "modern",
-  "accent": "#2563eb"
-}/*EDITMODE-END*/;
-
-const ACCENTS = ["#2563eb", "#4f46e5", "#0d9488", "#b8462f", "#475569"];
-
-function Tweaks({ t, setTweak }) {
-  return (
-    <TweaksPanel>
-      <TweakSection label="Aesthetic direction" />
-      <TweakRadio
-        label="Style"
-        value={t.direction}
-        options={["modern", "editorial", "bold"]}
-        onChange={(v) => setTweak("direction", v)}
-      />
-      <TweakSection label="Color" />
-      <TweakColor
-        label="Accent"
-        value={t.accent}
-        options={ACCENTS}
-        onChange={(v) => setTweak("accent", v)}
-      />
-    </TweaksPanel>
-  );
-}
+const THEME = { direction: "modern", accent: "#475569" };
 
 /* ----------------------------- app ----------------------------- */
 
 function App() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   useReveal();
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", t.direction);
-  }, [t.direction]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty("--accent", t.accent);
-  }, [t.accent]);
+    document.documentElement.setAttribute("data-theme", THEME.direction);
+    document.documentElement.style.setProperty("--accent", THEME.accent);
+  }, []);
 
   return (
     <React.Fragment>
@@ -334,8 +304,6 @@ function App() {
           </div>
         </div>
       </footer>
-
-      <Tweaks t={t} setTweak={setTweak} />
     </React.Fragment>
   );
 }
