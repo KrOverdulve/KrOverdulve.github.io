@@ -406,6 +406,18 @@
     margin-top: 10px;
     line-height: 1.45;
   }
+  .pub-viewmore { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .pub-year .badge { display: block; width: max-content; white-space: nowrap; }
+  .pub-thumb {
+    display: block;
+    margin-top: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+  .pub-thumb img { display: block; width: 100%; height: auto; transition: transform .3s ease; }
+  .pub-thumb:hover img { transform: scale(1.015); }
 
   /* ---------- projects ---------- */
   .projects {

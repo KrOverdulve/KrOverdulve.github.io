@@ -19,6 +19,30 @@ const INTERESTS = [
 // authors: array of {n, me?}
 const PUBS = [
   {
+    year: "2026",
+    type: "Conference",
+    title: "Practical High-Fidelity Novel-View Synthesis of Mounted Lepidoptera",
+    authors: [{ n: "K. Overdulve", me: true }, { n: "L. Jorissen" }, { n: "N. Michiels" }],
+    venue: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV 2027) · Accepted",
+    image: "assets/lepidoptera-teaser.jpg",
+    imageAlt: "Dorsal and ventral renders of five reconstructed butterfly specimens",
+    links: [
+      { label: "Project page", href: "https://kroverdulve.github.io/gsplat-lepidoptera/" },
+      { label: "arXiv", href: "https://arxiv.org/abs/2606.31679" },
+      { label: "Code", href: "https://github.com/KrOverdulve/gsplat-lepidoptera" },
+    ],
+  },
+  {
+    year: "2026",
+    type: "Conference",
+    title: "SSA-3DGS: Unsupervised Removal of Screen-Space Artifacts for 3D Gaussian Splatting",
+    authors: [{ n: "K. Overdulve", me: true }, { n: "L. Jorissen" }, { n: "N. Michiels" }],
+    venue: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV 2027) · Accepted",
+    links: [
+      { label: "arXiv", href: "https://arxiv.org/abs/2607.05598" },
+    ],
+  },
+  {
     year: "2025",
     type: "Conference",
     title: "Leveraging Transfer Learning for Niche Sign System Recognition in VR Training with Limited Data",
@@ -202,6 +226,7 @@ function Publications() {
           <article className="pub reveal" key={i}>
             <div className="pub-year">
               {p.year}
+              {p.badge ? <span className="badge">{p.badge}</span> : null}
             </div>
             <div>
               <div className="pub-title">{p.title}</div>
@@ -213,10 +238,19 @@ function Publications() {
                 ))}
               </div>
               <div className="pub-venue"><span className="type">{p.type}</span>{p.venue}</div>
+              {p.image && (
+                <a className="pub-thumb" href={p.links ? p.links[0].href : p.link} target="_blank" rel="noopener">
+                  <img src={p.image} alt={p.imageAlt || ""} loading="lazy" />
+                </a>
+              )}
               <div className="pub-viewmore">
-                {p.link && (
-                  <a href={p.link} target="_blank">View publication ↗</a>
-                )}
+                {p.links
+                  ? p.links.map((l) => (
+                      <a key={l.href} href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>
+                    ))
+                  : p.link && (
+                      <a href={p.link} target="_blank">View publication ↗</a>
+                    )}
               </div>
             </div>
           </article>
